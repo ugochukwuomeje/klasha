@@ -1,0 +1,6 @@
+package com.ugochukwu.countriesapi.enums;
+
+public enum StatusMessage {
+
+    TIMEOUT, SUCCESS, INTERNAL_SERVER_ERROR, REQUEST_CANNOT_BE_PROCESSED_CURRENTLY, NO_RESPONSE, CITIES_IN_STATE_NOT_FOUND
+}

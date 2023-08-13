@@ -1,0 +1,23 @@
+server:
+  port: 9099
+
+countriesapi:
+  populated_city: https://countriesnow.space/api/v0.1/countries/population/cities/filter/q
+  population: https://countriesnow.space/api/v0.1/countries/population/q
+  location: https://countriesnow.space/api/v0.1/countries/positions/q
+  country_capital: https://countriesnow.space/api/v0.1/countries/capital/q
+  currency: https://countriesnow.space/api/v0.1/countries/currency/q
+  country_iso: https://countriesnow.space/api/v0.1/countries/iso/q
+  states: https://countriesnow.space/api/v0.1/countries/states/q
+  cities: https://countriesnow.space/api/v0.1/countries/state/cities/q
+
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+##JWT properties
+app:
+  jwt-secret: JWTSecretKey
+  jwt-expiration-milliseconds: 604800000
