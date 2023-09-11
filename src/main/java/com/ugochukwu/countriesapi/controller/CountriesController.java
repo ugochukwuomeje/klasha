@@ -85,12 +85,9 @@ public class CountriesController {
             @RequestParam("amount") BigDecimal amount,
             @RequestParam("targetCurrency") String targetCurrency) {
 
-        log.info("country: "+country+"amount: "+amount+" currency: "+targetCurrency);
-        String countryCurrency = cityService.getCountryCurrency(country);
-        log.info("Base currency: "+countryCurrency);
-        BigDecimal convertedAmount = currencyConversionService.convertCurrency(countryCurrency, targetCurrency, amount);
 
-        String response = String.format("%s %.2f = %s %.2f", countryCurrency, amount, targetCurrency, convertedAmount);
+        String response = currencyConversionService.convertCurrency(targetCurrency, amount,country);
+
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

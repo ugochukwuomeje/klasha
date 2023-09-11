@@ -15,5 +15,5 @@ public class CityData {
 
     private String city;
     private String country;
-    private List<PopulationCountsFilter> populationCounts;
+    //private List<PopulationCountsFilter> populationCounts;
 }

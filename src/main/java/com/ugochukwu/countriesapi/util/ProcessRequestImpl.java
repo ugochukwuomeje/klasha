@@ -28,7 +28,7 @@ public class ProcessRequestImpl implements ProcessRequest{
         ResponseEntity<?> response = null;
         log.info(":::::::::::::::::::the calling processedRequest population method");
 
-         response  = restTemplate.exchange(url, HttpMethod.GET, request, PopulationResponse.class);
+         response  = restTemplate.exchange(url, HttpMethod.GET, request, CityResponse.class);
 
           log.info(":::::::::::the http response code: "+response.getStatusCode().value());
           log.info(":::::::::::the http response msg: "+response.getStatusCode().name());

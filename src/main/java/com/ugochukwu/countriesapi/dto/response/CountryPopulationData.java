@@ -17,7 +17,6 @@ import java.util.List;
 public class CountryPopulationData implements Serializable {
 
     private String country;
-    private String code;
-    private String iso3;
+    private String city;
     private List<PopulationCounts> populationCounts;
 }

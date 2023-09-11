@@ -3,6 +3,7 @@ package com.ugochukwu.countriesapi.service;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
@@ -17,6 +18,9 @@ import java.util.Map;
 public class CurrencyConversionService {
 
     private final Map<String, Map<String, BigDecimal>> exchangeRates;//final
+
+    @Autowired
+    private CityService cityService;
 
     public CurrencyConversionService() {
         this.exchangeRates = loadExchangeRates();
@@ -40,9 +44,17 @@ public class CurrencyConversionService {
         return rates;
     }
 
-    public BigDecimal convertCurrency(String baseCurrency, String targetCurrency, BigDecimal amount) {
+    public String convertCurrency(String targetCurrency, BigDecimal amount, String country) {
+
+        log.info("::::::::::::::::::::::::::: the target country is: "+country);
+        log.info("country: "+country+"amount: "+amount+" currency: "+targetCurrency);
+        String baseCurrency = cityService.getCountryCurrency(country);
+        log.info("Base currency: "+baseCurrency);
+
         if (baseCurrency.equals(targetCurrency)) {
-            return amount;
+
+            String response = String.format("%s %.2f = %s %.2f", baseCurrency, amount, targetCurrency, amount);
+            return response;
         }
 
         log.info(exchangeRates.toString());
@@ -56,6 +68,8 @@ public class CurrencyConversionService {
             throw new IllegalArgumentException("Target currency not found: " + targetCurrency);
         }
 
-        return amount.multiply(exchangeRate);
+        BigDecimal convertedAmount = amount.multiply(exchangeRate);
+
+        return convertedAmount.toString();
     }
 }

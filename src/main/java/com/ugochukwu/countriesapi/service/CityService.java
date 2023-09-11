@@ -116,7 +116,8 @@ public class CityService {
            if(rawResponse.getStatusCode().value() == HttpStatus.OK.value()) {
 
                    log.info("::::::::::::::::::the cityresponse result is: "+rawResponse.getBody());
-                   cityResponse =  gson.fromJson(String.valueOf(rawResponse.getBody()), CityResponse.class);
+                   //cityResponse =  gson.fromJson(rawResponse.getBody().toString(), CityResponse.class);
+                   cityResponse =  rawResponse.getBody();
 
                cityResponse.setMessage(StatusMessage.SUCCESS.toString());
                response  = new ResponseEntity<>(cityResponse, HttpStatus.OK);
